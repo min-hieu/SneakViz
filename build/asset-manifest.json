@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/SneakViz/static/css/main.a2569620.css",
+    "main.js": "/SneakViz/static/js/main.e2552f11.js",
+    "static/js/787.fd85ee2d.chunk.js": "/SneakViz/static/js/787.fd85ee2d.chunk.js",
+    "static/media/test_umap3d.csv": "/SneakViz/static/media/test_umap3d.c062853a390ab78a2a4e.csv",
+    "index.html": "/SneakViz/index.html",
+    "main.a2569620.css.map": "/SneakViz/static/css/main.a2569620.css.map",
+    "main.e2552f11.js.map": "/SneakViz/static/js/main.e2552f11.js.map",
+    "787.fd85ee2d.chunk.js.map": "/SneakViz/static/js/787.fd85ee2d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a2569620.css",
+    "static/js/main.e2552f11.js"
+  ]
+}

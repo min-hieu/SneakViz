@@ -1,32 +1,33 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useTexture, OrbitControls, FlyControls, PointerLockControls } from '@react-three/drei'
-import { createRandomCloud, setupUmap, makeCloud, makeDemo } from './S'
+import { makeCloud } from './S'
 import frame from './img/frame.png'
 
 const styles = {
   canvas: {
-    height: "74.5vh",
-    width: "120vh",
+    height: "100vh",
+    width: "132vh",
     background: "white",
     position: "absolute",
-    top: "8.5vh",
     left: "50%",
-    transform: "translate(-50%, 0)",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
   },
   frame: {
     position: "absolute",
     top: 0,
-    height: "90vh",
+    height: "100vh",
     left: "50%",
     transform: "translate(-50%, 0)",
     pointerEvents: "none",
   },
   controls: {
-    position: "absolute",
-    left: "50%",
-    transform: "translate(-50%, 0)",
-    bottom: "5vh",
+    margin: "102vh 0 2vh 0",
+    width: "100vw",
+    display: "flex",
+    justifyContent: "center",
+    gap: "2vw",
   },
   loading: {
     position: "absolute",
@@ -51,8 +52,6 @@ const sphere = () => {
 
 const Screen = () => {
   const cloudGeo = useMemo(() => makeCloud(), [])
-  const demoSprite = useMemo(() => makeDemo(), [])
-  const slowSprite = useMemo(() => setupUmap(), [])
   const [select, setSelect] = useState()
   const [plot, setPlot] = useState(null)
   const [plotDefault, setPlotDefault] = useState(null)
@@ -100,28 +99,25 @@ const Screen = () => {
           autoRotate={true}
           autoRotateSpeed={spin}
         />
-        <ambientLight />
+        <ambientLight intensity={1}/>
         <pointLight position={[10, 10, 10]} />
         {plot}
+        <mesh>
+          <sphereBufferGeometry args={[0.1, 30, 30]} attach="geometry" />
+          <meshBasicMaterial
+            color={0xff0000}
+          />
+        </mesh>
       </Canvas>
       <img src={frame} style={styles.frame}/>
       <div className="uiControls"
         style={styles.controls}
       >
-        <button onClick={(e) => setPlot(createRandomCloud(12))}>
-          random
-        </button>
         <button onClick={(e) => setSpin(spin?0:speed)}>
           Spin Switch
         </button>
         <button onClick={(e) => setPlot(plotDefault)}>
           makeCloud
-        </button>
-        <button onClick={(e) => setPlot(demoSprite)}>
-          makeDemo
-        </button>
-        <button onClick={(e) => setPlot(slowSprite)}>
-          old
         </button>
       </div>
     </>

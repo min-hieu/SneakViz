@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { useTexture, OrbitControls, FlyControls, PointerLockControls } from '@react-three/drei'
-import { makeCloud } from './S'
+import { OrbitControls } from '@react-three/drei'
+import { MakeCloudTexture } from './datapoint'
 import frame from './img/frame.png'
 
 const styles = {
   canvas: {
     height: "100vh",
-    width: "132vh",
+    width: "100vw",
     background: "white",
     position: "absolute",
     left: "50%",
@@ -21,8 +21,11 @@ const styles = {
     left: "50%",
     transform: "translate(-50%, 0)",
     pointerEvents: "none",
+		display: "None",
   },
   controls: {
+		position: "absolute",
+		bottom: "2vh",
     margin: "102vh 0 2vh 0",
     width: "100vw",
     display: "flex",
@@ -39,46 +42,26 @@ const styles = {
 
 const speed = 2
 
-const sphere = () => {
-  const radius = 8
-  return (
-    <mesh>
-      <sphereGeometry args={[radius, 8, 6]}/>
-      <meshBasicMaterial color="#FF0" />
-    </mesh>
-  )
-}
-
-
 const Screen = () => {
-  const cloudGeo = useMemo(() => makeCloud(), [])
-  const [select, setSelect] = useState()
+  const cloudGeo = useMemo(() => MakeCloudTexture({shoeType: "color"}), [])
   const [plot, setPlot] = useState(null)
   const [plotDefault, setPlotDefault] = useState(null)
   const [spin, setSpin] = useState(speed);
   const [loadStatus, setLoadStatus] = useState(null);
 
   useEffect(() => {
-    cloudGeo.then((geometry) => {
+    cloudGeo.then((mesh) => {
       setLoadStatus(1)
-      console.log("done loading lol")
-      setPlot(
-        <points geometry={geometry}>
-          <pointsMaterial size={0.1} vertexColors={true} />
-        </points>
-      )
-      setPlotDefault(
-        <points geometry={geometry}>
-          <pointsMaterial size={0.1} vertexColors={true} />
-        </points>
-      )
+      console.log("loaded!")
+      setPlot(mesh)
+      setPlotDefault(mesh)
     })
   }, [])
 
   if (loadStatus === null) {
     return (
       <div style={styles.loading}>
-        loading data lol ...
+        loading data ⌛️
       </div>
     )
   }
@@ -102,12 +85,6 @@ const Screen = () => {
         <ambientLight intensity={1}/>
         <pointLight position={[10, 10, 10]} />
         {plot}
-        <mesh>
-          <sphereBufferGeometry args={[0.1, 30, 30]} attach="geometry" />
-          <meshBasicMaterial
-            color={0xff0000}
-          />
-        </mesh>
       </Canvas>
       <img src={frame} style={styles.frame}/>
       <div className="uiControls"

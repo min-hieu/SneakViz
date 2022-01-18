@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/SneakViz/static/css/main.a2569620.css",
-    "main.js": "/SneakViz/static/js/main.628f2e51.js",
+    "main.js": "/SneakViz/static/js/main.153aee6b.js",
     "static/js/787.fd85ee2d.chunk.js": "/SneakViz/static/js/787.fd85ee2d.chunk.js",
-    "static/media/large_test_umap3d.csv": "/SneakViz/static/media/large_test_umap3d.956d73809c4517e8fd66.csv",
+    "static/media/atlas.png": "/SneakViz/static/media/atlas.9bf03e789fb956951cfe.png",
     "static/media/frame.png": "/SneakViz/static/media/frame.df7b2c1d7ffac5f91a9b.png",
-    "static/media/sampled_color_umap3d_2.csv": "/SneakViz/static/media/sampled_color_umap3d_2.e8fc14dbe3036e26a0c8.csv",
-    "static/media/sampled_color_umap3d.csv": "/SneakViz/static/media/sampled_color_umap3d.635d4bb36cd5b9eb881a.csv",
-    "static/media/test_umap3d_new.csv": "/SneakViz/static/media/test_umap3d_new.7a069196e9d99c99ad9a.csv",
+    "static/media/shape_umap.csv": "/SneakViz/static/media/shape_umap.cba4f2503e0e3dd7d43f.csv",
+    "static/media/joint_umap.csv": "/SneakViz/static/media/joint_umap.8335e2f888ddc4cb56fc.csv",
+    "static/media/color_umap.csv": "/SneakViz/static/media/color_umap.85aef11ef63158e6c086.csv",
     "index.html": "/SneakViz/index.html",
     "main.a2569620.css.map": "/SneakViz/static/css/main.a2569620.css.map",
-    "main.628f2e51.js.map": "/SneakViz/static/js/main.628f2e51.js.map",
+    "main.153aee6b.js.map": "/SneakViz/static/js/main.153aee6b.js.map",
     "787.fd85ee2d.chunk.js.map": "/SneakViz/static/js/787.fd85ee2d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a2569620.css",
-    "static/js/main.628f2e51.js"
+    "static/js/main.153aee6b.js"
   ]
 }

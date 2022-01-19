@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import { MakeCloudTexture } from './datapoint'
+import { MakeCloud2D, MakeCloudTexture } from './datapoint'
 import frame from './img/frame.png'
 
 const styles = {
@@ -21,11 +21,11 @@ const styles = {
     left: "50%",
     transform: "translate(-50%, 0)",
     pointerEvents: "none",
-		display: "None",
+    display: "None",
   },
   controls: {
-		position: "absolute",
-		bottom: "2vh",
+    position: "absolute",
+    bottom: "2vh",
     margin: "102vh 0 2vh 0",
     width: "100vw",
     display: "flex",
@@ -40,10 +40,10 @@ const styles = {
   },
 }
 
-const speed = 2
+const speed = 0
 
 const Screen = () => {
-  const cloudGeo = useMemo(() => MakeCloudTexture({shoeType: "color"}), [])
+  const cloudGeo = useMemo(() => MakeCloud2D({shoeType: "label"}), [])
   const [plot, setPlot] = useState(null)
   const [plotDefault, setPlotDefault] = useState(null)
   const [spin, setSpin] = useState(speed);

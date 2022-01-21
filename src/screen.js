@@ -7,9 +7,9 @@ import {
 	DefaultXRControllers,
 	Hands,
 	useController,
-	Interactive,
-	useXRFrame,
 	RayGrab,
+	useXRFrame,
+	useXREvent,
 } from '@react-three/xr'
 import { VRButton } from 'three/examples/jsm/webxr/VRButton'
 
@@ -34,16 +34,49 @@ const CloudMesh = ({geo, mat}) => {
 	const ref = useRef()
 	const [pressed, setPressed] = useState(false)
 	const [startSeq, setStartSeq] = useState(0)
-	const rightCon = useController("right")
-	const leftCon = useController("left")
+	const [leftSelect, setLeftSelect] = useState(false)
+	const [rightSelect, setRightSelect] = useState(false)
+	const [scaleFlag, setScaleFlag] = useState(false)
+	const [relativeScale, setRelativeScale] = useState(1)
+	const [scale, setScale] = useState(2)
+
+	useXREvent(
+		'selectstart',
+		() => {
+			setLeftSelect(true)
+		},
+		{ handedness: 'left' }
+	)
+
+	useXREvent(
+		'selectstart',
+		() => {
+			setRightSelect(true)
+		},
+		{ handedness: 'right' }
+	)
+
+	useXREvent(
+		'selectend',
+		() => {
+			setLeftSelect(false)
+			setScale(ref.current.scale.x)
+			setScaleFlag(false)
+		},
+		{ handedness: 'left' }
+	)
+
+	useXREvent(
+		'selectend',
+		() => {
+			setRightSelect(false)
+			setScale(ref.current.scale.x)
+			setScaleFlag(false)
+		},
+		{ handedness: 'right' }
+	)
 
 	useFrame((state, delta) => {
-		if (pressed) {
-			ref.current.scale.x += 11
-			ref.current.scale.y *= 0.9
-			ref.current.scale.z *= 0.9
-		}
-
 		if (startSeq == 0) {
 			ref.current.scale.x = 0.001
 			ref.current.scale.y = 0.001
@@ -59,14 +92,42 @@ const CloudMesh = ({geo, mat}) => {
 			}
 		}
 	})
-	
+
+	const leftController = useController('left')
+	const rightController = useController('right')
+
+	useXRFrame((state, delta) => {
+		if (leftSelect && rightSelect) {
+			let sum = 0
+			let leftie = leftController.controller.position
+			let rightie = rightController.controller.position
+			sum += Math.pow(leftie.x - rightie.x, 2)
+			sum += Math.pow(leftie.y - rightie.y, 2)
+			sum += Math.pow(leftie.z - rightie.z, 2)
+			let distance = Math.sqrt(sum)
+			let newScale = scale * distance / relativeScale
+
+			ref.current.scale.x = newScale
+			ref.current.scale.y = newScale
+			ref.current.scale.z = newScale
+
+			console.log(newScale)
+
+			// set initial state
+			if (scaleFlag === false) {
+				setRelativeScale(distance)
+				setScaleFlag(true)
+			}
+		} else if (!leftSelect && !rightSelect) {
+			ref.current.rotation.y += 0.0001
+		}
+	})
+
+
 	return (
-		<Interactive
-			onSelectStart={(e) => setPressed(true)}
-			onSelectEnd={() => setPressed(false)} 
-		>
+		<RayGrab>
 			<points geometry={geo} material={mat} ref={ref}/>
-		</Interactive>
+		</RayGrab>
 	)
 }
 
@@ -75,7 +136,7 @@ export default function Screen() {
   const [cloud, setCloud] = useState(null)
   const [loadStatus, setLoadStatus] = useState(null);
 	
-
+	// load geometry and texture
   useEffect(() => {
     cloudData.then((data) => {
 			setCloud(data)

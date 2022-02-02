@@ -1,64 +1,64 @@
 .controlBar {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	height: 3.5rem;
-	gap: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  gap: 1rem;
 }
 
 .controlBtn {
-	font-size: 1rem;
-	font-family: 'Roboto';
-	font-weight: 300;
-	background: white;
-	color: black;
-    height: 1.25rem;
-    width: 3rem;
-    text-align: center;
-	border-radius: 0.5rem;
-	border-style: solid;
-	border-width: 0.1rem;
+  font-size: 1rem;
+  font-family: "Roboto";
+  font-weight: 300;
+  background: white;
+  color: black;
+  height: 1.25rem;
+  width: 3rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.1rem;
 }
 
 .controlBtn:hover {
-	background: black;
-	color: white;
-	cursor: pointer;
+  background: black;
+  color: white;
+  cursor: pointer;
 }
 
 .controlText {
-	font-size: 1rem;
-	font-family: 'Roboto';
-	font-weight: 300;
+  font-size: 1rem;
+  font-family: "Roboto";
+  font-weight: 300;
 }
 
 #controlSlider {
-	width: 8rem;
+  width: 8rem;
 }
 
 #controlSliderDynamic {
-	width: 8rem;
+  width: 8rem;
 }
 
 #controlSliderTimer {
-	width: 18rem;
+  width: 18rem;
 }
 
 .iconBtn {
-	width: 1rem;
-	height: 1rem;
-	padding: .25rem;
-	border-radius: 0.5rem;
-	border-style: solid;
-	border-width: 0.1rem;
+  width: 1rem;
+  height: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.1rem;
 }
 
 .iconBtn:hover {
-	color: white;
-	background-color: black;
-	cursor: pointer;
+  color: white;
+  background-color: black;
+  cursor: pointer;
 }
 
 #staticCanvas {
-	margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }

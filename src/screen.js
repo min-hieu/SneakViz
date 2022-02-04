@@ -16,7 +16,7 @@ import {
   useXRFrame,
   useXREvent,
 } from "@react-three/xr";
-import { VRButton } from "three/examples/jsm/webxr/VRButton";
+import { VRButton } from './CustomVRButton';
 import { clear } from "@testing-library/user-event/dist/clear";
 
 const styles = {
@@ -233,11 +233,10 @@ export function StaticScreen() {
           }}
           mode="concurrent"
           onCreated={(args) => {
-            args.gl.setClearColor("white");
-            let vrBtn = VRButton.createButton(args.gl);
-            let cvs = document.getElementById("staticCanvas");
-            vrBtn = vrBtnStyle(vrBtn);
-            cvs.appendChild(vrBtn);
+            args.gl.setClearColor("white")
+            let vrBtn = VRButton.createButton(args.gl)
+            let cvs = document.getElementById("dynamicCanvas")
+            cvs.appendChild(vrBtn)
           }}
           id="staticCanvas"
         >
@@ -370,6 +369,11 @@ export function DynamicScreen() {
   const ref = useRef([]); // for shoe cloud object
   const viewRef = useRef(); // for resetting view
 
+  const yearDisplay =
+    <div className="yearDisplay">
+      <span className="yearDisplayText">{1999+year}</span>
+    </div>
+
   const dynamicControlBar = (
     <div className="controlBar">
       <span className="controlText">spin speed</span>
@@ -453,11 +457,11 @@ export function DynamicScreen() {
           }}
           mode="concurrent"
           onCreated={(args) => {
-            args.gl.setClearColor("white");
-            let vrBtn = VRButton.createButton(args.gl);
-            let cvs = document.getElementById("dynamicCanvas");
-            vrBtn = vrBtnStyle(vrBtn);
-            cvs.appendChild(vrBtn);
+            args.gl.setClearColor("white")
+            let vrBtn = VRButton.createButton(args.gl)
+            let cvs = document.getElementById("dynamicCanvas")
+            vrBtn = vrBtnStyle(vrBtn)
+            cvs.appendChild(vrBtn)
           }}
           id="dynamicCanvas"
         >
@@ -472,6 +476,7 @@ export function DynamicScreen() {
           <pointLight position={[0, 5, 5]} intensity={1} />
           <CloudMeshDynamic temporalMesh={cloud} innerRef={ref} />
         </VRCanvas>
+        {yearDisplay}
       </>
     );
   }

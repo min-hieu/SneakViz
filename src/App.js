@@ -69,7 +69,7 @@ const footer = (
   </div>
 );
 
-const text1 = [
+const text = [
   {
     h: "Background",
     c: [
@@ -78,9 +78,21 @@ const text1 = [
     ],
   },
   {
-    h: "Exploring Sneaker Color trend in 3D",
+    h: "Temporal Patterns",
     c: [
-      "Data suggest that sneakers tend to employ brighter colors and lower hue and saturation values over time. Yet, each brand continues to build toward its particular trajectory of shape-related design patterns. The embedding analysis also predicts which sneakers will likely see a high premium in the reselling market, suggesting a viable algorithm-driven investment and design strategies. The current work is the first to apply data science methods to a new research domain — i.e., analysis of product design evolution over a long his- torical period — and has implications for the novel use of Web data to understand cultural patterns that are otherwise hard to obtain.",
+      "The extracted embedding allows us to explore temporal changes in designs over a particular subset of data, such as brands, product categories, or specific features. For visual comprehensiveness, we further use PACMAP to reduce the dimension from 128 dimensions to 3 dimensions as shown in the interactive plot below.",
+    ],
+  },
+  {
+    h: "Neural Network based Embedding",
+    c: [
+      "Here, we present our neural network based embedding which can be seen intuitively pull shoes with similar colors together while push opposing color ones away",
+    ],
+  },
+  {
+    h: "Conclusion",
+    c: [
+      "The current study presented an unsupervised neural embedding model of a mass fashion item mined from the Web. We jointly utilized the color and shape information to embed sneaker designs from an extensive collection of Web images. This process required no label information at all, and the training was done end-to-end. By further reducing the data dimensions, we proposed the Sneaker Design Index that is an intuitive method to track design changes over time and across brands. Our data analysis revealed patterns of convergence and uniqueness in the design of major sneaker design houses over two decades. "
     ],
   },
 ];
@@ -90,10 +102,12 @@ export default function App() {
     <div className="container">
       {title}
       {subtitle}
-      <Section header={text1[0].h} contents={text1[0].c} />
+      <Section header={text[0].h} contents={text[0].c} />
+      <Section header={text[2].h} contents={text[2].c} />
       <StaticScreen />
-      <Section header={text1[0].h} contents={text1[0].c} />
+      <Section header={text[1].h} contents={text[1].c} />
       <DynamicScreen />
+      <Section header={text[3].h} contents={text[3].c} />
       {footer}
     </div>
   );

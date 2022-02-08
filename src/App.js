@@ -1,5 +1,5 @@
 import styles from "./styles/App.css";
-import { StaticScreen, DynamicScreen } from "./screen";
+import { StaticScreen, DynamicScreen, PaletteScreen } from "./screen";
 import { FaGithubSquare } from "react-icons/fa";
 import { AiFillGoogleSquare } from "react-icons/ai";
 import shoeGif from "./img/shoe.gif";
@@ -92,7 +92,7 @@ const text = [
   {
     h: "Conclusion",
     c: [
-      "The current study presented an unsupervised neural embedding model of a mass fashion item mined from the Web. We jointly utilized the color and shape information to embed sneaker designs from an extensive collection of Web images. This process required no label information at all, and the training was done end-to-end. By further reducing the data dimensions, we proposed the Sneaker Design Index that is an intuitive method to track design changes over time and across brands. Our data analysis revealed patterns of convergence and uniqueness in the design of major sneaker design houses over two decades. "
+      "The current study presented an unsupervised neural embedding model of a mass fashion item mined from the Web. We jointly utilized the color and shape information to embed sneaker designs from an extensive collection of Web images. This process required no label information at all, and the training was done end-to-end. By further reducing the data dimensions, we proposed the Sneaker Design Index that is an intuitive method to track design changes over time and across brands. Our data analysis revealed patterns of convergence and uniqueness in the design of major sneaker design houses over two decades. ",
     ],
   },
 ];
@@ -105,6 +105,8 @@ export default function App() {
       <Section header={text[0].h} contents={text[0].c} />
       <Section header={text[2].h} contents={text[2].c} />
       <StaticScreen />
+      <StaticScreen palette={true}/>
+      <StaticScreen cluster={true}/>
       <Section header={text[1].h} contents={text[1].c} />
       <DynamicScreen />
       <Section header={text[3].h} contents={text[3].c} />

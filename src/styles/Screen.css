@@ -68,21 +68,21 @@
 }
 
 .yearDisplay {
-    position: relative;
-    bottom: 7rem;
-    width: 100%;
-    text-align: right;
+  position: relative;
+  bottom: 7rem;
+  width: 100%;
+  text-align: right;
 }
 
 .yearDisplayText {
-    padding: 0.25rem 1rem;
-    position: relative;
-    right: 2rem;
-    background: black;
-    color: white;
-    font-size: 2rem;
-    font-family: 'Roboto', sans-serif;
-    border-radius: 1rem;
+  padding: 0.25rem 1rem;
+  position: relative;
+  right: 2rem;
+  background: black;
+  color: white;
+  font-size: 2rem;
+  font-family: "Roboto", sans-serif;
+  border-radius: 1rem;
 }
 
 /* #VRButton {

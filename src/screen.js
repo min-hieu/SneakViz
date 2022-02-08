@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
-import { GrPowerReset } from "react-icons/gr";
 import { MdRepeat, MdPause, MdPlayArrow } from "react-icons/md";
 import "./styles/Screen.css";
-import { useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { MakeCloud, MakeCloudDynamic } from "./datapoint";
+import { MakeCloud, MakeCloudPalette, MakeCloudCluster, MakeCloudDynamic } from "./datapoint";
 import {
   VRCanvas,
   DefaultXRControllers,
@@ -16,8 +14,7 @@ import {
   useXRFrame,
   useXREvent,
 } from "@react-three/xr";
-import { VRButton } from './CustomVRButton';
-import { clear } from "@testing-library/user-event/dist/clear";
+import { VRButton } from "./CustomVRButton";
 
 const styles = {
   canvas: {
@@ -73,23 +70,6 @@ const CloudMesh = ({ geo, mat }) => {
     },
     { handedness: "right" }
   );
-
-  useFrame((state, delta) => {
-    // if (startSeq == 0) {
-    //  ref.current.scale.x = 0.001
-    //  ref.current.scale.y = 0.001
-    //  ref.current.scale.z = 0.001
-    //  setStartSeq(1)
-    // }
-    // if (startSeq == 1) {
-    //  ref.current.scale.x *= 1.1
-    //  ref.current.scale.y *= 1.1
-    //  ref.current.scale.z *= 1.1
-    //  if (ref.current.scale.x > 2) {
-    //    setStartSeq(2)
-    //  }
-    // }
-  });
 
   const leftController = useController("left");
   const rightController = useController("right");
@@ -172,20 +152,22 @@ const vrBtnStyle = (vrBtn) => {
   vrBtn.style.borderRadius = "4px";
   vrBtn.style.background = "rgba(1, 1, 1, 0.3)";
   vrBtn.style.color = "rgb(255, 255, 255)";
-  // vrBtn.style.font: 13px sans-serif; */
   vrBtn.style.textAlign = "center";
   vrBtn.style.opacity = "1";
   vrBtn.style.outline = "none";
   vrBtn.style.zIndex = "999";
   vrBtn.style.cursor = "auto";
-  // vrBtn.style.left: calc(50% - 75px); */
-  // vrBtn.style.width: 150px;
 
   return vrBtn;
 };
 
-export function StaticScreen() {
-  const cloudData = useMemo(() => MakeCloud({ shoeType: "test" }), []);
+export function StaticScreen({ cluster=false, palette=false }) {
+  const cloudCluster = useMemo(() => MakeCloudCluster({ shoeType: "test" }), [])
+  const cloudPalette = useMemo(() => MakeCloudPalette({ shoeType: "test" }), [])
+  const cloudClean = useMemo(() => MakeCloud({ shoeType: "test" }), [])
+  const cloudData = cluster
+    ? cloudCluster : palette
+    ? cloudPalette : cloudClean
   const [cloud, setCloud] = useState(null);
   const [loadStatus, setLoadStatus] = useState(null);
   const [spin, setSpin] = useState(0);
@@ -233,10 +215,11 @@ export function StaticScreen() {
           }}
           mode="concurrent"
           onCreated={(args) => {
-            args.gl.setClearColor("white")
-            let vrBtn = VRButton.createButton(args.gl)
-            let cvs = document.getElementById("dynamicCanvas")
-            cvs.appendChild(vrBtn)
+            args.gl.setClearColor("white");
+            let vrBtn = VRButton.createButton(args.gl);
+            let cvs = document.getElementById("staticCanvas");
+            vrBtn = vrBtnStyle(vrBtn);
+            cvs.appendChild(vrBtn);
           }}
           id="staticCanvas"
         >
@@ -300,23 +283,6 @@ const CloudMeshDynamic = ({ temporalMesh, innerRef }) => {
     { handedness: "right" }
   );
 
-  useFrame((state, delta) => {
-    // if (startSeq == 0) {
-    //  ref.current.scale.x = 0.001
-    //  ref.current.scale.y = 0.001
-    //  ref.current.scale.z = 0.001
-    //  setStartSeq(1)
-    // }
-    // if (startSeq == 1) {
-    //  ref.current.scale.x *= 1.1
-    //  ref.current.scale.y *= 1.1
-    //  ref.current.scale.z *= 1.1
-    //  if (ref.current.scale.x > 2) {
-    //    setStartSeq(2)
-    //  }
-    // }
-  });
-
   const leftController = useController("left");
   const rightController = useController("right");
 
@@ -369,10 +335,11 @@ export function DynamicScreen() {
   const ref = useRef([]); // for shoe cloud object
   const viewRef = useRef(); // for resetting view
 
-  const yearDisplay =
+  const yearDisplay = (
     <div className="yearDisplay">
-      <span className="yearDisplayText">{1999+year}</span>
+      <span className="yearDisplayText">{1999 + year}</span>
     </div>
+  );
 
   const dynamicControlBar = (
     <div className="controlBar">
@@ -457,11 +424,11 @@ export function DynamicScreen() {
           }}
           mode="concurrent"
           onCreated={(args) => {
-            args.gl.setClearColor("white")
-            let vrBtn = VRButton.createButton(args.gl)
-            let cvs = document.getElementById("dynamicCanvas")
-            vrBtn = vrBtnStyle(vrBtn)
-            cvs.appendChild(vrBtn)
+            args.gl.setClearColor("white");
+            let vrBtn = VRButton.createButton(args.gl);
+            let cvs = document.getElementById("dynamicCanvas");
+            vrBtn = vrBtnStyle(vrBtn);
+            cvs.appendChild(vrBtn);
           }}
           id="dynamicCanvas"
         >

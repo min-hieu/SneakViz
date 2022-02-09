@@ -110,7 +110,6 @@ export default function App() {
       <StaticScreen cluster={true}/>
       <Section header={text[1].h} contents={text[1].c} />
       <DynamicScreen />
-      <Graph />
       <Section header={text[3].h} contents={text[3].c} />
       {footer}
     </div>

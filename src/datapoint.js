@@ -242,8 +242,6 @@ export async function MakeCloudDynamic({ shoeType }) {
 
   let temporalMesh = {};
 
-  console.log(years)
-
   for (let i = 0; i < Object.keys(years).length; i++) {
     let year = Object.keys(years)[i];
     let geometry = new THREE.BufferGeometry();

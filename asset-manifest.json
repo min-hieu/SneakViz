@@ -1,10 +1,12 @@
 {
   "files": {
     "main.css": "/SneakViz/static/css/main.da769270.css",
-    "main.js": "/SneakViz/static/js/main.a9bccd9b.js",
+    "main.js": "/SneakViz/static/js/main.4a22b37b.js",
     "static/js/787.fd85ee2d.chunk.js": "/SneakViz/static/js/787.fd85ee2d.chunk.js",
     "static/media/atlas.png": "/SneakViz/static/media/atlas.f37169154aba1d5ad2e7.png",
-    "static/media/color_umap_test.csv": "/SneakViz/static/media/color_umap_test.1f03aa7b2ef35345c3d5.csv",
+    "static/media/palette_atlas.png": "/SneakViz/static/media/palette_atlas.5152fb1f58ba59f2bd4e.png",
+    "static/media/color_umap_test.csv": "/SneakViz/static/media/color_umap_test.e2c2cba3a95b25a13771.csv",
+    "static/media/graph.csv": "/SneakViz/static/media/graph.033c91e5c8baafeb34e3.csv",
     "static/media/shape_umap.csv": "/SneakViz/static/media/shape_umap.cba4f2503e0e3dd7d43f.csv",
     "static/media/joint_umap.csv": "/SneakViz/static/media/joint_umap.8335e2f888ddc4cb56fc.csv",
     "static/media/color_umap.csv": "/SneakViz/static/media/color_umap.85aef11ef63158e6c086.csv",
@@ -12,11 +14,11 @@
     "static/media/data_science_small_logo.png": "/SneakViz/static/media/data_science_small_logo.abfa764fb0559a357040.png",
     "index.html": "/SneakViz/index.html",
     "main.da769270.css.map": "/SneakViz/static/css/main.da769270.css.map",
-    "main.a9bccd9b.js.map": "/SneakViz/static/js/main.a9bccd9b.js.map",
+    "main.4a22b37b.js.map": "/SneakViz/static/js/main.4a22b37b.js.map",
     "787.fd85ee2d.chunk.js.map": "/SneakViz/static/js/787.fd85ee2d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.da769270.css",
-    "static/js/main.a9bccd9b.js"
+    "static/js/main.4a22b37b.js"
   ]
 }

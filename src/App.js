@@ -1,5 +1,6 @@
 import styles from "./styles/App.css";
 import { StaticScreen, DynamicScreen, PaletteScreen } from "./screen";
+import { Graph } from './graph';
 import { FaGithubSquare } from "react-icons/fa";
 import { AiFillGoogleSquare } from "react-icons/ai";
 import shoeGif from "./img/shoe.gif";
@@ -109,6 +110,7 @@ export default function App() {
       <StaticScreen cluster={true}/>
       <Section header={text[1].h} contents={text[1].c} />
       <DynamicScreen />
+      <Graph />
       <Section header={text[3].h} contents={text[3].c} />
       {footer}
     </div>

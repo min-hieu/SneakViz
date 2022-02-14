@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import { MdRepeat, MdPause, MdPlayArrow } from "react-icons/md";
 import "./styles/Screen.css";
 import { OrbitControls } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import { MakeCloud, MakeCloudPalette, MakeCloudCluster, MakeCloudDynamic } from "./datapoint";
 import {
   VRCanvas,
@@ -15,6 +16,13 @@ import {
   useXREvent,
 } from "@react-three/xr";
 import { VRButton } from "./CustomVRButton";
+import { CubeTextureLoader } from 'three';
+import xp from './img/xp.png';
+import xn from './img/xn.png';
+import yp from './img/yp.png';
+import yn from './img/yn.png';
+import zp from './img/zp.png';
+import zn from './img/zn.png';
 
 const styles = {
   canvas: {
@@ -26,6 +34,26 @@ const styles = {
   },
   loading: {},
 };
+
+const SkyBox = () => {
+  const { scene } = useThree();
+  const loader = new CubeTextureLoader();
+  // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
+  const texture = loader.load([
+    xp,
+    xn,
+    yn,
+    yp, 
+    zp,
+    zn
+  ]);
+
+  // Set the scene background property to the resulting texture.
+  scene.background = texture;
+  scene.background.flipY = true;
+  console.log(scene)
+  return null;
+}
 
 const CloudMesh = ({ geo, mat }) => {
   const ref = useRef();
@@ -230,9 +258,13 @@ export function StaticScreen({ cluster=false, palette=false }) {
           />
           <DefaultXRControllers />
           <Hands />
-          <ambientLight intensity={0.3} />
-          <pointLight position={[0, 5, 5]} intensity={1} />
+          <ambientLight color={0xFFFFFF} intensity={0.0} />
+          <directionalLight intensity={0.9} />
+          <pointLight position={[0, 0, 3]} intensity={1} />
+          <pointLight position={[0, 3, 0]} intensity={1} />
+          <pointLight position={[3, 3, 0]} intensity={1} />
           <CloudMesh geo={cloud.geo} mat={cloud.mat} />
+          <SkyBox />
         </VRCanvas>
       </>
     );

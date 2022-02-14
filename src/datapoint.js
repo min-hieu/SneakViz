@@ -17,6 +17,7 @@ texture.wrapT = THREE.RepeatWrapping;
 const material = new THREE.PointsMaterial({
   map: texture,
   size: 0.07,
+  color: 0xffffff,
   transparent: true,
   alphaTest: 0.5,
 });
@@ -28,6 +29,7 @@ p_texture.wrapT = THREE.RepeatWrapping;
 const p_material = new THREE.PointsMaterial({
   map: p_texture,
   size: 0.04,
+  color: 'white',
   transparent: true,
   alphaTest: 0.5,
 });
@@ -47,19 +49,19 @@ const fragmentParsChunk = ["varying float texIndex;", "#include <common>"].join(
 );
 
 const offsetChunk = `
-	#if defined( USE_MAP ) || defined( USE_ALPHAMAP )
-		vec2 uv = ( uvTransform * vec3( gl_PointCoord.x, 1.0 - gl_PointCoord.y, 1 ) ).xy;
-	#endif
+  #if defined( USE_MAP ) || defined( USE_ALPHAMAP )
+    vec2 uv = ( uvTransform * vec3( gl_PointCoord.x, 1.0 - gl_PointCoord.y, 1 ) ).xy;
+  #endif
 
-	#ifdef USE_MAP
-		float offsetX = mod(texIndex,150.) / 150.;
-		float offsetY = -floor(texIndex/150.) / 150. - 1./150.;
-		diffuseColor *= texture2D( map, uv/150. + vec2(offsetX,offsetY) );
-	#endif
+  #ifdef USE_MAP
+    float offsetX = mod(texIndex,150.) / 150.;
+    float offsetY = -floor(texIndex/150.) / 150. - 1./150.;
+    diffuseColor *= texture2D( map, uv/150. + vec2(offsetX,offsetY) );
+  #endif
 
-	#ifdef USE_ALPHAMAP
-		diffuseColor.a *= texture2D( alphaMap, uv ).g;
-	#endif
+  #ifdef USE_ALPHAMAP
+    diffuseColor.a *= texture2D( alphaMap, uv ).g;
+  #endif
 `;
 
 material.onBeforeCompile = function (shader) {

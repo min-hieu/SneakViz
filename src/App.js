@@ -103,6 +103,7 @@ export default function App() {
     <div className="container">
       {title}
       {subtitle}
+      {/* <Graph /> */}
       <Section header={text[0].h} contents={text[0].c} />
       <Section header={text[2].h} contents={text[2].c} />
       <StaticScreen />

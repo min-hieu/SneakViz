@@ -3,7 +3,7 @@ import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import { MdRepeat, MdPause, MdPlayArrow } from "react-icons/md";
 import "./styles/Screen.css";
-import { OrbitControls } from "@react-three/drei";
+import { Sky, OrbitControls } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { MakeCloud, MakeCloudPalette, MakeCloudCluster, MakeCloudDynamic } from "./datapoint";
 import {
@@ -16,13 +16,14 @@ import {
   useXREvent,
 } from "@react-three/xr";
 import { VRButton } from "./CustomVRButton";
-import { CubeTextureLoader } from 'three';
+import { BackSide } from 'three';
 import xp from './img/xp.png';
 import xn from './img/xn.png';
 import yp from './img/yp.png';
 import yn from './img/yn.png';
 import zp from './img/zp.png';
 import zn from './img/zn.png';
+import testBackground from './img/testBackground.jpeg'
 
 const styles = {
   canvas: {
@@ -35,25 +36,12 @@ const styles = {
   loading: {},
 };
 
-const SkyBox = () => {
-  const { scene } = useThree();
-  const loader = new CubeTextureLoader();
-  // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
-  const texture = loader.load([
-    xp,
-    xn,
-    yn,
-    yp, 
-    zp,
-    zn
-  ]);
-
-  // Set the scene background property to the resulting texture.
-  scene.background = texture;
-  scene.background.flipY = true;
-  console.log(scene)
-  return null;
-}
+const SkyBox = () => (
+  <mesh>
+    <sphereBufferGeometry args={[500, 60, 40]} />
+    <meshBasicMaterial map={testBackground} side={BackSide} />
+  </mesh>
+)
 
 const CloudMesh = ({ geo, mat }) => {
   const ref = useRef();
@@ -189,7 +177,7 @@ const vrBtnStyle = (vrBtn) => {
   return vrBtn;
 };
 
-export function StaticScreen({ cluster=false, palette=false }) {
+export function StaticScreen({ cluster=false, palette=false, canvasId="StaticCanvas" }) {
   const cloudCluster = useMemo(() => MakeCloudCluster({ shoeType: "test" }), [])
   const cloudPalette = useMemo(() => MakeCloudPalette({ shoeType: "test" }), [])
   const cloudClean = useMemo(() => MakeCloud({ shoeType: "test" }), [])
@@ -237,19 +225,23 @@ export function StaticScreen({ cluster=false, palette=false }) {
           gl={{ antialias: true, alpha: false }}
           style={styles.canvas}
           camera={{
-            fov: 999,
+            fov: 75,
             position: [0, 0, 1],
-            far: 100000,
+            far: 999,
+          }}
+          fog={{
+            near: 23,
+            far: 3000,
           }}
           mode="concurrent"
           onCreated={(args) => {
             args.gl.setClearColor("white");
             let vrBtn = VRButton.createButton(args.gl);
-            let cvs = document.getElementById("staticCanvas");
+            let cvs = document.getElementById(canvasId);
             vrBtn = vrBtnStyle(vrBtn);
             cvs.appendChild(vrBtn);
           }}
-          id="staticCanvas"
+          id={canvasId}
         >
           <OrbitControls
             autoRotate={true}
@@ -258,13 +250,11 @@ export function StaticScreen({ cluster=false, palette=false }) {
           />
           <DefaultXRControllers />
           <Hands />
-          <ambientLight color={0xFFFFFF} intensity={0.0} />
-          <directionalLight intensity={0.9} />
+          <ambientLight color={0xFFFFFF} intensity={5.0} />
+          <directionalLight intensity={99999.9} />
           <pointLight position={[0, 0, 3]} intensity={1} />
-          <pointLight position={[0, 3, 0]} intensity={1} />
-          <pointLight position={[3, 3, 0]} intensity={1} />
           <CloudMesh geo={cloud.geo} mat={cloud.mat} />
-          <SkyBox />
+          <Sky />
         </VRCanvas>
       </>
     );

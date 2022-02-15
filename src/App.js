@@ -103,12 +103,12 @@ export default function App() {
     <div className="container">
       {title}
       {subtitle}
-      {/* <Graph /> */}
+      <Graph />
       <Section header={text[0].h} contents={text[0].c} />
       <Section header={text[2].h} contents={text[2].c} />
       <StaticScreen />
-      <StaticScreen palette={true}/>
-      <StaticScreen cluster={true}/>
+      <StaticScreen palette={true} canvasId="PaletteCanvas"/>
+      <StaticScreen cluster={true} canvasId="ClusterCanvas"/>
       <Section header={text[1].h} contents={text[1].c} />
       <DynamicScreen />
       <Section header={text[3].h} contents={text[3].c} />

@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/SneakViz/static/css/main.da769270.css",
+    "main.css": "/SneakViz/static/css/main.4792e2a2.css",
     "main.js": "/SneakViz/static/js/main.678b2f47.js",
     "static/js/787.fd85ee2d.chunk.js": "/SneakViz/static/js/787.fd85ee2d.chunk.js",
     "static/media/atlas.png": "/SneakViz/static/media/atlas.f37169154aba1d5ad2e7.png",
@@ -13,12 +13,12 @@
     "static/media/shoe.gif": "/SneakViz/static/media/shoe.eaa262ea41192550a060.gif",
     "static/media/data_science_small_logo.png": "/SneakViz/static/media/data_science_small_logo.abfa764fb0559a357040.png",
     "index.html": "/SneakViz/index.html",
-    "main.da769270.css.map": "/SneakViz/static/css/main.da769270.css.map",
+    "main.4792e2a2.css.map": "/SneakViz/static/css/main.4792e2a2.css.map",
     "main.678b2f47.js.map": "/SneakViz/static/js/main.678b2f47.js.map",
     "787.fd85ee2d.chunk.js.map": "/SneakViz/static/js/787.fd85ee2d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.da769270.css",
+    "static/css/main.4792e2a2.css",
     "static/js/main.678b2f47.js"
   ]
 }

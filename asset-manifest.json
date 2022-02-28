@@ -1,24 +1,31 @@
 {
   "files": {
-    "main.css": "/SneakViz/static/css/main.db306268.css",
-    "main.js": "/SneakViz/static/js/main.678b2f47.js",
+    "main.css": "/SneakViz/static/css/main.b0e21a6d.css",
+    "main.js": "/SneakViz/static/js/main.75f4404e.js",
     "static/js/787.fd85ee2d.chunk.js": "/SneakViz/static/js/787.fd85ee2d.chunk.js",
     "static/media/atlas.png": "/SneakViz/static/media/atlas.f37169154aba1d5ad2e7.png",
+    "static/media/testBackground.jpeg": "/SneakViz/static/media/testBackground.0c0b410e30a72f1ec11f.jpeg",
     "static/media/palette_atlas.png": "/SneakViz/static/media/palette_atlas.5152fb1f58ba59f2bd4e.png",
     "static/media/color_umap_test.csv": "/SneakViz/static/media/color_umap_test.e2c2cba3a95b25a13771.csv",
-    "static/media/graph.csv": "/SneakViz/static/media/graph.033c91e5c8baafeb34e3.csv",
     "static/media/shape_umap.csv": "/SneakViz/static/media/shape_umap.cba4f2503e0e3dd7d43f.csv",
     "static/media/joint_umap.csv": "/SneakViz/static/media/joint_umap.8335e2f888ddc4cb56fc.csv",
     "static/media/color_umap.csv": "/SneakViz/static/media/color_umap.85aef11ef63158e6c086.csv",
+    "static/media/graph.csv": "/SneakViz/static/media/graph.93a4fb761e8fc1399405.csv",
     "static/media/shoe.gif": "/SneakViz/static/media/shoe.eaa262ea41192550a060.gif",
+    "static/media/yp.png": "/SneakViz/static/media/yp.cdc3ad97e74b2231f7e1.png",
+    "static/media/xp.png": "/SneakViz/static/media/xp.47889e6b8b964caca1b7.png",
+    "static/media/xn.png": "/SneakViz/static/media/xn.cf6d87d2c6a9ec978370.png",
+    "static/media/zn.png": "/SneakViz/static/media/zn.7f27db9bc727a4478584.png",
+    "static/media/zp.png": "/SneakViz/static/media/zp.0f693265fc30e83aa305.png",
+    "static/media/yn.png": "/SneakViz/static/media/yn.1ce330b268d009085426.png",
     "static/media/data_science_small_logo.png": "/SneakViz/static/media/data_science_small_logo.abfa764fb0559a357040.png",
     "index.html": "/SneakViz/index.html",
-    "main.db306268.css.map": "/SneakViz/static/css/main.db306268.css.map",
-    "main.678b2f47.js.map": "/SneakViz/static/js/main.678b2f47.js.map",
+    "main.b0e21a6d.css.map": "/SneakViz/static/css/main.b0e21a6d.css.map",
+    "main.75f4404e.js.map": "/SneakViz/static/js/main.75f4404e.js.map",
     "787.fd85ee2d.chunk.js.map": "/SneakViz/static/js/787.fd85ee2d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.db306268.css",
-    "static/js/main.678b2f47.js"
+    "static/css/main.b0e21a6d.css",
+    "static/js/main.75f4404e.js"
   ]
 }
